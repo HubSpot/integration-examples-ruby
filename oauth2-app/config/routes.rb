@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/contacts', to: 'contacts#index'
+  get '/oauth', to: 'oauth/authorization#authorize'
+  get '/oauth/callback', to: 'oauth/authorization#callback'
+  root to: 'contacts#index'
 end
