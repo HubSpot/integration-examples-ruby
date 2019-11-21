@@ -2,6 +2,7 @@ class ContactsController < ApplicationController
   before_action :authorize
 
   def index
+    # https://developers.hubspot.com/docs/methods/contacts/get_contacts
     @contacts = Hubspot::Contact.all(count: 10)
   end
 
