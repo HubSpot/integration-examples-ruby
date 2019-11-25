@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>HubSpot Ruby sample Form Submission and File Download app</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render partial: "shared/header"%>
+    <%= yield %>
+  </body>
+</html>
