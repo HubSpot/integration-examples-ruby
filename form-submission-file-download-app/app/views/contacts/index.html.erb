@@ -1,0 +1,44 @@
+<div class="container">
+  <% if @error.present? %>
+    <h3><%= @error.message %></h3>
+  <% else %>
+    <%= form_tag('/contacts', method: :get) do %>
+      <%= label_tag(:search, "Search for:") %>
+      <%= text_field_tag(:search, @search_q, placeholder: 'Search..', id: 'search') %>
+    <% end %>
+
+    <table class="contacts">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th><%= "Protected file (#{ENV['PROTECTED_FILE_LINK_PROPERTY']})"  %></th>
+        <th><%= "Public file (#{ENV['PUBLIC_FILE_LINK_PROPERTY']})" %></th>
+      </tr>
+      </thead>
+      <tbody>
+
+        <% @contacts.each do |contact| %>
+            <tr>
+              <td><%= contact.vid %></td>
+              <td><%= contact.properties[:email] %></td>
+              <td>
+                <% if contact.properties[ENV['PROTECTED_FILE_LINK_PROPERTY']].present? %>
+                  <a href=<%= contact.properties[ENV['PROTECTED_FILE_LINK_PROPERTY']] %>>File</a>
+                <% else %>
+                  -
+                <% end %>
+              </td>
+              <td>
+                <% if contact.properties[ENV['PUBLIC_FILE_LINK_PROPERTY']].present? %>
+                  <a href=<%= contact.properties[ENV['PUBLIC_FILE_LINK_PROPERTY']] %>>File</a>
+                <% else %>
+                  -
+                <% end %>              
+              </td>
+            </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
