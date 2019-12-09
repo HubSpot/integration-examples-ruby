@@ -16,6 +16,7 @@ module Services
         def refresh_tokens
           tokens = ::Hubspot::OAuth.refresh(@tokens['refresh_token'])
           tokens['expires_at'] = expires_at(tokens['expires_in'])
+          Token.instance.update!(tokens)
           tokens
         end
       end

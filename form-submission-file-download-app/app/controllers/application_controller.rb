@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
   include ExceptionHandler
 
-  before_action :check_env_variables
   before_action :configure_hubspot
+  before_action :check_env_variables
   before_action :authorize_hubspot
   before_action :require_form, if: :authorized?
 

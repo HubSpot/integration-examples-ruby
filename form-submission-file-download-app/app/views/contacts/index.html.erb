@@ -20,21 +20,21 @@
 
         <% @contacts.each do |contact| %>
             <tr>
-              <td><%= contact.vid %></td>
-              <td><%= contact.properties[:email] %></td>
-              <td>
+              <td class="contact-id"><%= contact.vid %></td>
+              <td class="email"><%= contact.properties[:email] %></td>
+              <td class="protected-file">
                 <% if contact.properties[ENV['PROTECTED_FILE_LINK_PROPERTY']].present? %>
                   <a href=<%= contact.properties[ENV['PROTECTED_FILE_LINK_PROPERTY']] %>>File</a>
                 <% else %>
                   -
                 <% end %>
               </td>
-              <td>
+              <td class="public-file">
                 <% if contact.properties[ENV['PUBLIC_FILE_LINK_PROPERTY']].present? %>
                   <a href=<%= contact.properties[ENV['PUBLIC_FILE_LINK_PROPERTY']] %>>File</a>
                 <% else %>
                   -
-                <% end %>              
+                <% end %>
               </td>
             </tr>
         <% end %>
