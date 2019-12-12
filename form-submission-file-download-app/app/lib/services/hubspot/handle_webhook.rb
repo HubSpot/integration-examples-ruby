@@ -28,8 +28,7 @@ module Services
       end
 
       def handle_webhook
-        path = @webhook['propertyValue'].remove('https://api.hubspot.com')
-        file_url = Services::Hubspot::GetUploadedFileByUrl.new(path: path).call
+        file_url = Services::Hubspot::GetUploadedFileByUrl.new(url: @webhook['propertyValue']).call
         contact = ::Hubspot::Contact.new('vid' => @webhook['objectId'], 'properties' => { sample: 'sample' })
         contact.update!(ENV['PUBLIC_FILE_LINK_PROPERTY'] => file_url)
       end
