@@ -1,7 +1,7 @@
 default: &default
-  host: db
   adapter: postgresql
   encoding: unicode
+  host: db
   username: postgres
   password:
   pool: 5
@@ -9,6 +9,7 @@ default: &default
 development:
   <<: *default
   database: form_submission_file_download_app_development
+
 
 test:
   <<: *default
