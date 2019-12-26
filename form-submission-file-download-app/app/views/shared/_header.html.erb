@@ -1,0 +1,21 @@
+  <nav class="navigation">
+    <div class="container">
+      <a class="navigation-title" href="/">
+        <h3 class="title">HubSpot Ruby Sample Form Submission and File Download App</h3>
+      </a>
+      <ul class="navigation-list float-right">
+        <% if authorized? %>
+          <li class="navigation-item">
+            <a id="form" class="navigation-link" href="/form">Form</a>
+          </li>
+          <li class="navigation-item">
+            <a id="contacts-list" class="navigation-link" href="/">Contacts</a>
+          </li>
+        <% else %>
+          <li class="navigation-item">
+            <a class="navigation-link" href="/oauth">OAuth2</a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>

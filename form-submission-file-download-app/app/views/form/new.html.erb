@@ -1,0 +1,13 @@
+<div class="row form-create">
+    <div class="column column-20"></div>
+    <div class="column column-60">
+      <%= form_tag('/form', method: 'post') do %>
+        <h3>Initialization Script - press Go button to initialize file upload form and Properties</h3>
+        <p>This script creates two custom properies, upload form and webhook.</p>
+        <%= label_tag(:form_name, "Form Name") %>
+        <%= text_field_tag(:form_name, @form_name) %>
+        <%= submit_tag("Go") %>
+      <% end %>
+    </div>
+    <div class="column column-20"></div>
+</div>
