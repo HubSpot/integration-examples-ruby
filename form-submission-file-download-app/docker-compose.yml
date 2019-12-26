@@ -15,10 +15,6 @@ services:
     image: postgres
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
-    ports:
-      - 3306:3306
-    logging:
-      driver: none
   ngrok:
     image: gtriggiano/ngrok-tunnel
     ports:

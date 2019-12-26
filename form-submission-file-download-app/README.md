@@ -32,6 +32,10 @@ The best way to run this project (with the least configuration), is using docker
 ```bash
 docker-compose up --build
 ```
+In another terminal, run:
+```bash
+docker-compose run web rake db:create db:migrate
+```
 
 Copy Ngrok url from console. Now you should now be able to navigate to that url and use the application.
 
