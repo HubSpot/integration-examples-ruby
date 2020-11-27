@@ -1,9 +1,9 @@
 class WebhooksController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:callback]
+  skip_before_action :verify_authenticity_token, only: [:handle]
   skip_before_action :authorize_hubspot
-  skip_before_action :require_form, only: [:callback]
+  skip_before_action :require_form, only: [:handle]
 
-  def callback
+  def handle
     head(:unauthorized) && return unless hubspot_signature_valid?
 
     authorize_hubspot
