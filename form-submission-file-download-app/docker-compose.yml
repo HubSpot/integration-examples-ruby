@@ -15,6 +15,9 @@ services:
     image: postgres
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD:
+      POSTGRES_DB: postgres
   ngrok:
     image: gtriggiano/ngrok-tunnel
     ports:

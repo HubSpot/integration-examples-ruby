@@ -6,8 +6,7 @@ module Services
       end
 
       def call
-        file = get_file
-        response = ::Hubspot::File.upload(file, file_names: SecureRandom.urlsafe_base64)
+        response = Services::Hubspot::FileUploader.upload(file)
         response['objects'].first['friendly_url']
       rescue ::Hubspot::RequestError => e
         e.response.code == 404 ? false : raise(e)
@@ -15,17 +14,13 @@ module Services
 
       private
 
-      def get_file
-        parsed_file = ::Hubspot::Form.upload_file(@url)
+      attr_reader :url
+
+      def file
+        parsed_file = ::Hubspot::Form.upload_file(url)
         tempfile = file_attachment(parsed_file)
 
-        query = Rack::Utils.parse_nested_query(@url)
-        mime_type = Mime::Type.lookup_by_extension(File.extname(query['filename'])[1..-1]).to_s
-        ActionDispatch::Http::UploadedFile.new(
-          tempfile: tempfile,
-          filename: SecureRandom.urlsafe_base64,
-          type: mime_type
-        )
+        File.open(tempfile.path)
       end
 
       def file_attachment(parsed_file)
